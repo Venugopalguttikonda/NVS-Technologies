@@ -170,7 +170,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .product-info h3 { font-size: 1.9rem; letter-spacing: -0.02em; }
 .product-tagline { color: var(--indigo) !important; font-weight: 600; font-size: 0.9rem; margin: 4px 0 14px; }
-.product-info .btn { margin-top: 10px; }
+
 
 .product-features h4 { font-size: 0.85rem; color: var(--muted); margin-bottom: 14px; font-weight: 600; }
 .product-features ul { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -296,3 +296,77 @@ ul { margin: 0; padding: 0; list-style: none; }
   html { scroll-behavior: auto; }
   * { transition: none !important; }
 }
+
+/* ---------- Logo images ---------- */
+.logo img { display: block; height: 38px; width: auto; }
+.site-footer .logo img { height: 34px; }
+
+/* Money Ledgr app icon in the product card */
+.product-logo {
+  display: block;
+  width: 84px; height: 84px;
+  margin-bottom: 18px;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px -6px rgba(79,70,229,0.4);
+}
+
+/* ---------- Product buttons ---------- */
+.product-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; }
+.btn-secondary { background: transparent; color: var(--indigo); border-color: var(--indigo); }
+.btn-secondary:hover { background: #eceefe; }
+
+/* ---------- Screenshot viewer ---------- */
+.showcase {
+  width: min(960px, 94vw);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background: var(--white);
+  color: var(--text);
+  box-shadow: 0 30px 80px rgba(5, 10, 40, 0.5);
+}
+.showcase::backdrop { background: rgba(8, 13, 40, 0.75); backdrop-filter: blur(4px); }
+.sc-inner { display: grid; grid-template-columns: 0.8fr 1fr; position: relative; max-height: 92vh; }
+.sc-close {
+  position: absolute; top: 12px; right: 14px; z-index: 2;
+  width: 38px; height: 38px; border: 0; border-radius: 50%;
+  background: var(--soft); color: var(--text); font-size: 1.5rem; line-height: 1; cursor: pointer;
+}
+.sc-close:hover { background: var(--line); }
+
+.sc-stage { background: linear-gradient(160deg, #e9edff, #eaf7f4); display: grid; place-items: center; padding: 22px; }
+.sc-stage img { display: block; width: auto; max-width: 100%; max-height: calc(92vh - 44px); border-radius: 14px; box-shadow: 0 18px 40px -16px rgba(20, 30, 90, 0.45); transition: opacity 0.2s; }
+.sc-stage img.fading { opacity: 0; }
+
+.sc-side { padding: 40px 36px 32px; overflow-y: auto; display: flex; flex-direction: column; }
+.sc-side h3 { font-size: 1.6rem; margin-bottom: 10px; letter-spacing: -0.01em; }
+.sc-side p#sc-text { color: var(--muted); min-height: 5.2em; }
+
+.sc-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
+.sc-tabs button {
+  padding: 7px 14px; font: 500 0.85rem inherit; font-family: inherit; cursor: pointer;
+  background: var(--soft); border: 1px solid var(--line); border-radius: 999px; color: var(--text);
+}
+.sc-tabs button:hover { border-color: var(--indigo); }
+.sc-tabs button.active { background: var(--indigo); border-color: var(--indigo); color: var(--white); }
+
+.sc-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; font-size: 0.9rem; color: var(--muted); }
+.sc-arrow { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--white); font-size: 1.1rem; cursor: pointer; }
+.sc-arrow:hover { border-color: var(--indigo); color: var(--indigo); }
+.sc-side .btn { align-self: flex-start; margin-top: auto; }
+
+html.modal-open { overflow: hidden; }
+
+@media (max-width: 760px) {
+  .sc-inner { grid-template-columns: 1fr; overflow-y: auto; }
+  .sc-stage { padding: 18px 18px 8px; }
+  .sc-stage img { max-height: 46vh; }
+  .sc-side { padding: 22px 22px 26px; overflow: visible; }
+  .sc-side p#sc-text { min-height: 0; }
+  .sc-side .btn { width: 100%; text-align: center; margin-top: 4px; }
+}
+
+.more-link { margin: 18px 0 0 !important; font-size: 0.92rem; font-weight: 600; }
+.more-link a { text-decoration: none; }
+.more-link a:hover { text-decoration: underline; }

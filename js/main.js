@@ -71,3 +71,60 @@ form.addEventListener('submit', (e) => {
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+
+// ---------- Money Ledgr screenshot viewer ----------
+const showcase = document.getElementById('showcase');
+const scImage = document.getElementById('sc-image');
+const scTitle = document.getElementById('sc-title');
+const scText = document.getElementById('sc-text');
+const scCount = document.getElementById('sc-count');
+const scTabs = [...showcase.querySelectorAll('.sc-tabs button')];
+let current = 0;
+
+function showScreen(index) {
+  // wrap around at both ends
+  current = (index + scTabs.length) % scTabs.length;
+  const tab = scTabs[current];
+
+  scImage.classList.add('fading');
+  setTimeout(() => {
+    scImage.src = tab.dataset.src;
+    scImage.alt = tab.dataset.alt;
+    scImage.classList.remove('fading');
+  }, 120);
+
+  scTitle.textContent = tab.dataset.title;
+  scText.textContent = tab.dataset.text;
+  scCount.textContent = (current + 1) + ' / ' + scTabs.length;
+
+  scTabs.forEach((t, i) => {
+    t.classList.toggle('active', i === current);
+    t.setAttribute('aria-selected', i === current);
+  });
+
+  // warm up the next image so it appears instantly
+  new Image().src = scTabs[(current + 1) % scTabs.length].dataset.src;
+}
+
+document.querySelector('[data-open-showcase]').addEventListener('click', () => {
+  showScreen(0);
+  showcase.showModal();
+  document.documentElement.classList.add('modal-open');
+});
+
+showcase.addEventListener('close', () => document.documentElement.classList.remove('modal-open'));
+showcase.querySelector('.sc-close').addEventListener('click', () => showcase.close());
+
+// clicking the dark area outside the card closes it
+showcase.addEventListener('click', (e) => { if (e.target === showcase) showcase.close(); });
+
+scTabs.forEach((tab, i) => tab.addEventListener('click', () => showScreen(i)));
+document.getElementById('sc-prev').addEventListener('click', () => showScreen(current - 1));
+document.getElementById('sc-next').addEventListener('click', () => showScreen(current + 1));
+
+// arrow keys while the viewer is open
+showcase.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight') showScreen(current + 1);
+  if (e.key === 'ArrowLeft') showScreen(current - 1);
+});
