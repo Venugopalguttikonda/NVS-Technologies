@@ -37,6 +37,7 @@
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
     <nav id="main-nav" class="main-nav" aria-label="Main">
       <a href="index.html">Home</a>
+      <a href="#demo">Try it</a>
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
       <a href="#faq">FAQ</a>
@@ -86,6 +87,199 @@
       <p>Most people do not have a money problem so much as a visibility problem. The salary is in one place, the EMI in another, the SIP in a third, and a friend still owes you for the trip.</p>
       <p>Money Ledgr gives each of those a proper home and then connects them, so one app answers the questions that matter: how much can I spend today, what do I owe, and is my money growing?</p>
     </div>
+  </div>
+</section>
+
+<!-- Interactive demo: a working mini version of the Budgets screen -->
+<section class="section section-soft" id="demo">
+  <div class="container demo-grid">
+    <div class="demo-copy">
+      <p class="kicker">Try it yourself</p>
+      <h2>Log an expense and watch your budget react</h2>
+      <p>This is a working mini version of the Budgets screen, running right here in your browser. Add a spend and see your balance, daily allowance and category limits update instantly.</p>
+
+      <form class="demo-form" id="demo-form">
+        <div class="demo-fields">
+          <div>
+            <label for="demo-amount">Amount (&#8377;)</label>
+            <input type="number" id="demo-amount" min="1" step="1" inputmode="numeric" placeholder="e.g. 250" required>
+          </div>
+          <div>
+            <label for="demo-cat">Category</label>
+            <select id="demo-cat"></select>
+          </div>
+        </div>
+        <div class="demo-buttons">
+          <button type="submit" class="btn btn-primary">Add expense</button>
+          <button type="button" class="btn btn-secondary" id="demo-reset">Reset</button>
+        </div>
+      </form>
+
+      <p class="quick-label">Or tap a quick one:</p>
+      <div class="quick" id="demo-quick">
+        <button type="button" data-amt="120" data-cat="food">Coffee &#8377;120</button>
+        <button type="button" data-amt="80" data-cat="transport">Auto &#8377;80</button>
+        <button type="button" data-amt="350" data-cat="fun">Movie &#8377;350</button>
+        <button type="button" data-amt="900" data-cat="food">Dinner out &#8377;900</button>
+      </div>
+      <p class="demo-note">Sample data only. Nothing you enter here is saved or sent anywhere.</p>
+    </div>
+
+    <div class="demo-phone" aria-label="Money Ledgr budgets demo">
+      <div class="dp-screen">
+        <div class="dp-top">Budgets</div>
+        <div class="dp-balance" id="dp-balance">
+          <small>Remaining balance</small>
+          <strong id="d-remaining">&#8377;5,380</strong>
+          <div class="dp-bar"><i id="d-bar"></i></div>
+          <small id="d-daily"></small>
+        </div>
+        <div class="dp-stats">
+          <div>Total budget<b id="d-total"></b></div>
+          <div>Used this month<b id="d-used"></b></div>
+        </div>
+        <p class="dp-heading">Monthly limits</p>
+        <ul class="dp-list" id="d-list"></ul>
+        <p class="dp-toast" id="d-toast" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Money playground: three small calculators -->
+<section class="section" id="tools">
+  <div class="container">
+    <div class="head-narrow">
+      <p class="kicker">Money playground</p>
+      <h2>Three quick calculators to try</h2>
+      <p class="head-sub">Play with real numbers for loans, shared bills and savings goals. Money Ledgr then helps you track the result.</p>
+    </div>
+
+    <div class="lab">
+      <div class="lab-tabs" role="tablist" aria-label="Calculators">
+        <button type="button" role="tab" class="active" aria-selected="true" aria-controls="lab-emi" id="tab-emi">Loan EMI</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="lab-split" id="tab-split">Split a bill</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="lab-goal" id="tab-goal">Savings goal</button>
+      </div>
+
+      <!-- EMI -->
+      <div class="lab-panel" id="lab-emi" role="tabpanel" aria-labelledby="tab-emi">
+        <div class="lab-inputs">
+            <div class="lf">
+              <label for="e-p">Loan amount (&#8377;)</label>
+              <div class="lf-row">
+                <input type="range" id="e-p-r" min="10000" max="5000000" step="10000" value="500000" aria-label="Loan amount (&#8377;) slider">
+                <input type="number" id="e-p" min="10000" max="5000000" step="10000" value="500000" inputmode="decimal">
+              </div>
+            </div>
+            <div class="lf">
+              <label for="e-r">Interest rate (% per year)</label>
+              <div class="lf-row">
+                <input type="range" id="e-r-r" min="1" max="30" step="0.1" value="10.5" aria-label="Interest rate (% per year) slider">
+                <input type="number" id="e-r" min="1" max="30" step="0.1" value="10.5" inputmode="decimal">
+              </div>
+            </div>
+            <div class="lf">
+              <label for="e-n">Tenure (months)</label>
+              <div class="lf-row">
+                <input type="range" id="e-n-r" min="3" max="360" step="1" value="36" aria-label="Tenure (months) slider">
+                <input type="number" id="e-n" min="3" max="360" step="1" value="36" inputmode="decimal">
+              </div>
+            </div>
+        </div>
+        <div class="lab-result">
+          <div class="donut" id="e-donut" style="--p:80"><span><small>Monthly EMI</small><b id="e-emi"></b></span></div>
+          <ul class="legend">
+            <li><i class="dot-blue"></i>Principal <b id="e-pr"></b></li>
+            <li><i class="dot-green"></i>Total interest <b id="e-int"></b></li>
+            <li>Total payable <b id="e-tot"></b></li>
+          </ul>
+          <a href="https://play.google.com/store/apps/details?id=com.money_ledgr.app&pcampaignid=web_share" class="lab-cta" target="_blank" rel="noopener">Track this in Money Ledgr &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Split -->
+      <div class="lab-panel" id="lab-split" role="tabpanel" aria-labelledby="tab-split" hidden>
+        <div class="lab-inputs">
+            <div class="lf">
+              <label for="s-b">Bill amount (&#8377;)</label>
+              <div class="lf-row">
+                <input type="range" id="s-b-r" min="100" max="50000" step="50" value="2400" aria-label="Bill amount (&#8377;) slider">
+                <input type="number" id="s-b" min="100" max="50000" step="50" value="2400" inputmode="decimal">
+              </div>
+            </div>
+            <div class="lf">
+              <label for="s-n">People</label>
+              <div class="lf-row">
+                <input type="range" id="s-n-r" min="2" max="20" step="1" value="4" aria-label="People slider">
+                <input type="number" id="s-n" min="2" max="20" step="1" value="4" inputmode="decimal">
+              </div>
+            </div>
+            <div class="lf">
+              <label for="s-t">Tip or service charge (%)</label>
+              <div class="lf-row">
+                <input type="range" id="s-t-r" min="0" max="20" step="1" value="0" aria-label="Tip or service charge (%) slider">
+                <input type="number" id="s-t" min="0" max="20" step="1" value="0" inputmode="decimal">
+              </div>
+            </div>
+          <label class="check"><input type="checkbox" id="s-paid" checked> I paid the whole bill</label>
+        </div>
+        <div class="lab-result">
+          <div class="big-number"><small>Each person pays</small><b id="s-each"></b></div>
+          <ul class="legend">
+            <li>Bill with tip <b id="s-total"></b></li>
+            <li id="s-line"></li>
+          </ul>
+          <div class="people" id="s-people" aria-hidden="true"></div>
+          <a href="https://play.google.com/store/apps/details?id=com.money_ledgr.app&pcampaignid=web_share" class="lab-cta" target="_blank" rel="noopener">Track this in Money Ledgr &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Goal -->
+      <div class="lab-panel" id="lab-goal" role="tabpanel" aria-labelledby="tab-goal" hidden>
+        <div class="lab-inputs">
+            <div class="lf">
+              <label for="g-t">Goal amount (&#8377;)</label>
+              <div class="lf-row">
+                <input type="range" id="g-t-r" min="10000" max="10000000" step="10000" value="300000" aria-label="Goal amount (&#8377;) slider">
+                <input type="number" id="g-t" min="10000" max="10000000" step="10000" value="300000" inputmode="decimal">
+              </div>
+            </div>
+            <div class="lf">
+              <label for="g-n">Time to reach it (months)</label>
+              <div class="lf-row">
+                <input type="range" id="g-n-r" min="3" max="240" step="1" value="24" aria-label="Time to reach it (months) slider">
+                <input type="number" id="g-n" min="3" max="240" step="1" value="24" inputmode="decimal">
+              </div>
+            </div>
+            <div class="lf">
+              <label for="g-c">Already saved (&#8377;)</label>
+              <div class="lf-row">
+                <input type="range" id="g-c-r" min="0" max="5000000" step="5000" value="20000" aria-label="Already saved (&#8377;) slider">
+                <input type="number" id="g-c" min="0" max="5000000" step="5000" value="20000" inputmode="decimal">
+              </div>
+            </div>
+            <div class="lf">
+              <label for="g-r">Expected yearly return (%)</label>
+              <div class="lf-row">
+                <input type="range" id="g-r-r" min="0" max="15" step="0.5" value="6" aria-label="Expected yearly return (%) slider">
+                <input type="number" id="g-r" min="0" max="15" step="0.5" value="6" inputmode="decimal">
+              </div>
+            </div>
+        </div>
+        <div class="lab-result">
+          <div class="big-number"><small>Save every month</small><b id="g-month"></b></div>
+          <ul class="legend">
+            <li>That is about <b id="g-day"></b> a day</li>
+            <li>You put in <b id="g-put"></b></li>
+            <li>Growth adds about <b id="g-grow"></b></li>
+          </ul>
+          <div class="goal-bar" aria-hidden="true"><i id="g-bar"></i></div>
+          <a href="https://play.google.com/store/apps/details?id=com.money_ledgr.app&pcampaignid=web_share" class="lab-cta" target="_blank" rel="noopener">Track this in Money Ledgr &rarr;</a>
+        </div>
+      </div>
+    </div>
+    <p class="demo-note">Estimates for illustration only, not financial advice. Nothing you enter is saved or sent.</p>
   </div>
 </section>
 
@@ -172,6 +366,32 @@
         <p class="good-for"><strong>Good for:</strong> trips, shared rent and any group that splits bills.</p>
       </div>
     </article>
+  </div>
+</section>
+
+<!-- Animated product tour (plays like a short video) -->
+<section class="section section-soft" id="watch">
+  <div class="container">
+    <div class="head-narrow">
+      <p class="kicker">Watch</p>
+      <h2>A quick tour of Money Ledgr</h2>
+    </div>
+
+    <div class="tour" id="tour">
+      <div class="tour-stage" id="tour-stage">
+        <div class="tour-shot"><img id="tour-img" src="images/screens/investments.jpg" alt="" width="720" height="1280"></div>
+        <div class="tour-caption">
+          <span class="tour-count" id="tour-count">1 / 5</span>
+          <h3 id="tour-title"></h3>
+          <p id="tour-text"></p>
+          <button type="button" class="btn btn-primary" id="tour-video" hidden>Watch the full video</button>
+        </div>
+      </div>
+      <div class="tour-controls">
+        <button type="button" class="tour-play" id="tour-play" aria-label="Pause tour">&#10074;&#10074;</button>
+        <div class="tour-segs" id="tour-segs" role="group" aria-label="Tour progress"></div>
+      </div>
+    </div>
   </div>
 </section>
 
