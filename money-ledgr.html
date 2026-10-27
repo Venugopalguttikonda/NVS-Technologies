@@ -33,10 +33,10 @@
 
 <header class="site-header" id="top">
   <div class="container header-inner">
-    <a href="index.html" class="logo" aria-label="NVS Technologies home"><img src="images/nvs-logo.png" alt="NVS Technologies" width="700" height="135"></a>
+    <a href="#top" class="logo ml-brand" aria-label="Money Ledgr home"><img src="images/money-ledgr-icon.jpg" alt="" width="320" height="320"><span>Money Ledgr</span></a>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
     <nav id="main-nav" class="main-nav" aria-label="Main">
-      <a href="index.html">Home</a>
+      <a href="#everything">Tools</a>
       <a href="#demo">Try it</a>
       <a href="#features">Features</a>
       <a href="#how">How it works</a>
@@ -50,29 +50,18 @@
 
 <!-- Hero -->
 <section class="p-hero">
-  <div class="container p-hero-grid">
-    <div>
-      <p class="crumbs"><a href="index.html">NVS Technologies</a> / Products / Money Ledgr</p>
-      <div class="brand-row">
-        <img src="images/money-ledgr-icon.jpg" alt="Money Ledgr app icon" width="320" height="320">
-        <span>Track. Manage. Grow.</span>
-      </div>
-      <h1>Your whole financial life, in one app.</h1>
-      <p class="lead">Budgets, loans, savings, investments and shared expenses are usually spread across notes, spreadsheets and bank apps. Money Ledgr brings them together so you can see where you stand.</p>
-      <div class="hero-actions">
-        <a href="https://play.google.com/store/apps/details?id=com.money_ledgr.app&pcampaignid=web_share" class="btn btn-primary" target="_blank" rel="noopener">Get it on Google Play</a>
-        <a href="#features" class="btn btn-outline">Explore features</a>
-      </div>
-      <ul class="facts">
-        <li>Android app</li>
-        <li>Built for &#8377; rupees</li>
-        <li>9 money tools in one place</li>
-      </ul>
+  <div class="container p-hero-inner">
+    <p class="hero-tag">Track. Manage. Grow.</p>
+    <h1>Your whole financial life, in one app.</h1>
+    <p class="lead">Budgets, loans, savings, investments and shared expenses are usually spread across notes, spreadsheets and bank apps. Money Ledgr brings them together so you can see where you stand.</p>
+    <div class="hero-actions">
+      <a href="#features" class="btn btn-outline">Explore features</a>
     </div>
-    <div class="poster-stack" aria-hidden="true">
-      <img class="p1" src="images/screens/investments.jpg" alt="" width="720" height="1280">
-      <img class="p2" src="images/screens/budgets.jpg" alt="" width="720" height="1280">
-    </div>
+    <ul class="facts">
+      <li>Android app</li>
+      <li>Built for &#8377; rupees</li>
+      <li>9 money tools in one place</li>
+    </ul>
   </div>
 </section>
 
@@ -90,8 +79,29 @@
   </div>
 </section>
 
+<!-- Everything included -->
+<section class="section section-soft" id="everything">
+  <div class="container">
+    <div class="head-narrow">
+      <p class="kicker">Everything included</p>
+      <h2>Nine tools, one app</h2>
+    </div>
+    <ul class="tool-grid">
+      <li><strong>Income &amp; expense tracking</strong><span>Log money in and out in seconds.</span></li>
+      <li><strong>Budget management</strong><span>Monthly limits for each category.</span></li>
+      <li><strong>Net worth tracking</strong><span>What you own minus what you owe.</span></li>
+      <li><strong>Investment tracking</strong><span>Value, returns and allocation.</span></li>
+      <li><strong>Loan tracking</strong><span>EMIs, interest and due dates.</span></li>
+      <li><strong>Split payments</strong><span>Groups and settlements for shared costs.</span></li>
+      <li><strong>Plan your funds</strong><span>Allocate money to goals and bills.</span></li>
+      <li><strong>Savings tracking</strong><span>Watch your savings build up.</span></li>
+      <li><strong>Financial reports</strong><span>Review your activity over time.</span></li>
+    </ul>
+  </div>
+</section>
+
 <!-- Interactive demo: a working mini version of the Budgets screen -->
-<section class="section section-soft" id="demo">
+<section class="section" id="demo">
   <div class="container demo-grid">
     <div class="demo-copy">
       <p class="kicker">Try it yourself</p>
@@ -147,7 +157,7 @@
 </section>
 
 <!-- Money playground: three small calculators -->
-<section class="section" id="tools">
+<section class="section section-soft" id="tools">
   <div class="container">
     <div class="head-narrow">
       <p class="kicker">Money playground</p>
@@ -283,89 +293,95 @@
   </div>
 </section>
 
-<!-- Feature deep-dives -->
-<section class="section section-soft dives" id="features">
+<!-- Feature deep-dives: all five screens in one tabbed panel -->
+<section class="section" id="features">
   <div class="container">
     <div class="head-narrow">
       <p class="kicker">Features in detail</p>
       <h2>Five screens that do the heavy lifting</h2>
     </div>
 
-    <article class="dive" id="investments">
-      <div class="dive-shot"><img src="images/screens/investments.jpg" alt="Investment Portfolio screen with portfolio value, profit and loss, and an allocation chart" width="720" height="1280" loading="lazy"></div>
-      <div class="dive-text">
-        <p class="dive-label">Investments</p>
-        <h3>See what your investments are really doing</h3>
-        <p>Stop guessing whether you are ahead. Money Ledgr puts your portfolio value, what you put in, and what you have gained or lost on a single screen.</p>
-        <ul class="checks">
-          <li>Portfolio value, amount invested and profit or loss at a glance</li>
-          <li>Overall return and annual return, with the date it was last updated</li>
-          <li>An allocation chart showing how your money is spread out</li>
-          <li>Holdings, watchlist and dividends counted in one summary</li>
-        </ul>
-        <p class="good-for"><strong>Good for:</strong> people who invest regularly and want one place to check progress.</p>
+    <div class="feat-tabs" id="feat-tabs">
+      <div class="feat-tablist" role="tablist" aria-label="Money Ledgr features">
+        <button type="button" role="tab" id="ft-investments" aria-controls="fp-investments" aria-selected="true" tabindex="0">Investments</button>
+        <button type="button" role="tab" id="ft-budgets" aria-controls="fp-budgets" aria-selected="false" tabindex="-1">Budgets</button>
+        <button type="button" role="tab" id="ft-plan" aria-controls="fp-plan" aria-selected="false" tabindex="-1">Plan your funds</button>
+        <button type="button" role="tab" id="ft-loans" aria-controls="fp-loans" aria-selected="false" tabindex="-1">Loans</button>
+        <button type="button" role="tab" id="ft-split" aria-controls="fp-split" aria-selected="false" tabindex="-1">Split payments</button>
       </div>
-    </article>
-    <article class="dive flip" id="budgets">
-      <div class="dive-shot"><img src="images/screens/budgets.jpg" alt="Budgets screen with remaining balance and monthly limits for food, transport and rent" width="720" height="1280" loading="lazy"></div>
-      <div class="dive-text">
-        <p class="dive-label">Budgets</p>
-        <h3>Set a limit. Stay inside it.</h3>
-        <p>Give every category a monthly limit and watch your spending against it. The app also turns your remaining balance into a daily allowance, so you always know what is safe to spend today.</p>
-        <ul class="checks">
-          <li>Total budget and the amount used this month</li>
-          <li>A per-day spending allowance for the days left</li>
-          <li>Limits for categories such as food, transport and rent</li>
-          <li>Progress bars that show how much of each limit is gone</li>
-        </ul>
-        <p class="good-for"><strong>Good for:</strong> anyone who reaches the end of the month wondering where the money went.</p>
+      <div class="feat-panels">
+      <article class="feat-panel" role="tabpanel" id="fp-investments" aria-labelledby="ft-investments">
+        <div class="feat-shot"><img src="images/screens/investments.jpg" alt="Investment Portfolio screen with portfolio value, profit and loss, and an allocation chart" width="720" height="1280" loading="lazy"></div>
+        <div class="feat-text">
+          <h3>See what your investments are really doing</h3>
+          <p>Stop guessing whether you are ahead. Money Ledgr puts your portfolio value, what you put in, and what you have gained or lost on a single screen.</p>
+          <ul class="checks">
+            <li>Portfolio value, amount invested and profit or loss at a glance</li>
+            <li>Overall return and annual return, with the date it was last updated</li>
+            <li>An allocation chart showing how your money is spread out</li>
+            <li>Holdings, watchlist and dividends counted in one summary</li>
+          </ul>
+          <p class="good-for"><strong>Good for:</strong> people who invest regularly and want one place to check progress.</p>
+        </div>
+      </article>
+      <article class="feat-panel" role="tabpanel" id="fp-budgets" aria-labelledby="ft-budgets" hidden>
+        <div class="feat-shot"><img src="images/screens/budgets.jpg" alt="Budgets screen with remaining balance and monthly limits for food, transport and rent" width="720" height="1280" loading="lazy"></div>
+        <div class="feat-text">
+          <h3>Set a limit. Stay inside it.</h3>
+          <p>Give every category a monthly limit and watch your spending against it. The app also turns your remaining balance into a daily allowance, so you always know what is safe to spend today.</p>
+          <ul class="checks">
+            <li>Total budget and the amount used this month</li>
+            <li>A per-day spending allowance for the days left</li>
+            <li>Limits for categories such as food, transport and rent</li>
+            <li>Progress bars that show how much of each limit is gone</li>
+          </ul>
+          <p class="good-for"><strong>Good for:</strong> anyone who reaches the end of the month wondering where the money went.</p>
+        </div>
+      </article>
+      <article class="feat-panel" role="tabpanel" id="fp-plan" aria-labelledby="ft-plan" hidden>
+        <div class="feat-shot"><img src="images/screens/plan-funds.jpg" alt="Plan Your Funds screen showing available funds and allocations for EMI, groceries, savings and emergency fund" width="720" height="1280" loading="lazy"></div>
+        <div class="feat-text">
+          <h3>Decide where your money goes before you spend it</h3>
+          <p>Start with the money you have available and divide it across expenses, savings and goals. You see what is allocated, what is left and how far along you are.</p>
+          <ul class="checks">
+            <li>Available, allocated and remaining funds side by side</li>
+            <li>An allocation progress bar that updates as you plan</li>
+            <li>Separate lines for EMI, groceries, savings and an emergency fund</li>
+            <li>Edit or remove any allocation when your plans change</li>
+          </ul>
+          <p class="good-for"><strong>Good for:</strong> salaried users who want a plan for each paycheque.</p>
+        </div>
+      </article>
+      <article class="feat-panel" role="tabpanel" id="fp-loans" aria-labelledby="ft-loans" hidden>
+        <div class="feat-shot"><img src="images/screens/loans.jpg" alt="Loans screen showing total owed, monthly interest, and loan details with Pay and Schedule buttons" width="720" height="1280" loading="lazy"></div>
+        <div class="feat-text">
+          <h3>Know exactly what you owe, and what is owed to you</h3>
+          <p>Keep payables and receivables in one list. Every loan shows the principal, what is still outstanding, the interest and the due date, so nothing slips past you.</p>
+          <ul class="checks">
+            <li>Total owed with monthly and accrued interest</li>
+            <li>Separate tabs for payables and receivables</li>
+            <li>EMI amount, due date and interest rate for each loan</li>
+            <li>Pay and Schedule buttons right on the loan</li>
+          </ul>
+          <p class="good-for"><strong>Good for:</strong> anyone with EMIs, personal loans or money lent to friends.</p>
+        </div>
+      </article>
+      <article class="feat-panel" role="tabpanel" id="fp-split" aria-labelledby="ft-split" hidden>
+        <div class="feat-shot"><img src="images/screens/split-payments.jpg" alt="Split Payments screen showing what you owe, what you get and a trip group" width="720" height="1280" loading="lazy"></div>
+        <div class="feat-text">
+          <h3>Share costs without the awkward maths</h3>
+          <p>Create a group for a trip, a flat or a night out. Add the expenses, see who owes whom, and mark payments as settled when the money changes hands.</p>
+          <ul class="checks">
+            <li>An overview of what you owe and what you are owed</li>
+            <li>Groups for trips, events and shared bills</li>
+            <li>Group balance and total spent, with a clear Settled status</li>
+            <li>Invitations so friends can join a group</li>
+          </ul>
+          <p class="good-for"><strong>Good for:</strong> trips, shared rent and any group that splits bills.</p>
+        </div>
+      </article>
       </div>
-    </article>
-    <article class="dive" id="plan">
-      <div class="dive-shot"><img src="images/screens/plan-funds.jpg" alt="Plan Your Funds screen showing available funds and allocations for EMI, groceries, savings and emergency fund" width="720" height="1280" loading="lazy"></div>
-      <div class="dive-text">
-        <p class="dive-label">Plan your funds</p>
-        <h3>Decide where your money goes before you spend it</h3>
-        <p>Start with the money you have available and divide it across expenses, savings and goals. You see what is allocated, what is left and how far along you are.</p>
-        <ul class="checks">
-          <li>Available, allocated and remaining funds side by side</li>
-          <li>An allocation progress bar that updates as you plan</li>
-          <li>Separate lines for EMI, groceries, savings and an emergency fund</li>
-          <li>Edit or remove any allocation when your plans change</li>
-        </ul>
-        <p class="good-for"><strong>Good for:</strong> salaried users who want a plan for each paycheque.</p>
-      </div>
-    </article>
-    <article class="dive flip" id="loans">
-      <div class="dive-shot"><img src="images/screens/loans.jpg" alt="Loans screen showing total owed, monthly interest, and loan details with Pay and Schedule buttons" width="720" height="1280" loading="lazy"></div>
-      <div class="dive-text">
-        <p class="dive-label">Loans</p>
-        <h3>Know exactly what you owe, and what is owed to you</h3>
-        <p>Keep payables and receivables in one list. Every loan shows the principal, what is still outstanding, the interest and the due date, so nothing slips past you.</p>
-        <ul class="checks">
-          <li>Total owed with monthly and accrued interest</li>
-          <li>Separate tabs for payables and receivables</li>
-          <li>EMI amount, due date and interest rate for each loan</li>
-          <li>Pay and Schedule buttons right on the loan</li>
-        </ul>
-        <p class="good-for"><strong>Good for:</strong> anyone with EMIs, personal loans or money lent to friends.</p>
-      </div>
-    </article>
-    <article class="dive" id="split">
-      <div class="dive-shot"><img src="images/screens/split-payments.jpg" alt="Split Payments screen showing what you owe, what you get and a trip group" width="720" height="1280" loading="lazy"></div>
-      <div class="dive-text">
-        <p class="dive-label">Split payments</p>
-        <h3>Share costs without the awkward maths</h3>
-        <p>Create a group for a trip, a flat or a night out. Add the expenses, see who owes whom, and mark payments as settled when the money changes hands.</p>
-        <ul class="checks">
-          <li>An overview of what you owe and what you are owed</li>
-          <li>Groups for trips, events and shared bills</li>
-          <li>Group balance and total spent, with a clear Settled status</li>
-          <li>Invitations so friends can join a group</li>
-        </ul>
-        <p class="good-for"><strong>Good for:</strong> trips, shared rent and any group that splits bills.</p>
-      </div>
-    </article>
+    </div>
   </div>
 </section>
 
@@ -395,29 +411,8 @@
   </div>
 </section>
 
-<!-- Everything included -->
-<section class="section" id="everything">
-  <div class="container">
-    <div class="head-narrow">
-      <p class="kicker">Everything included</p>
-      <h2>Nine tools, one app</h2>
-    </div>
-    <ul class="tool-grid">
-      <li><strong>Income &amp; expense tracking</strong><span>Log money in and out in seconds.</span></li>
-      <li><strong>Budget management</strong><span>Monthly limits for each category.</span></li>
-      <li><strong>Net worth tracking</strong><span>What you own minus what you owe.</span></li>
-      <li><strong>Investment tracking</strong><span>Value, returns and allocation.</span></li>
-      <li><strong>Loan tracking</strong><span>EMIs, interest and due dates.</span></li>
-      <li><strong>Split payments</strong><span>Groups and settlements for shared costs.</span></li>
-      <li><strong>Plan your funds</strong><span>Allocate money to goals and bills.</span></li>
-      <li><strong>Savings tracking</strong><span>Watch your savings build up.</span></li>
-      <li><strong>Financial reports</strong><span>Review your activity over time.</span></li>
-    </ul>
-  </div>
-</section>
-
 <!-- How it works -->
-<section class="section section-soft" id="how">
+<section class="section" id="how">
   <div class="container">
     <div class="head-narrow"><h2>Get started in three steps</h2></div>
     <ol class="p-steps">
@@ -429,7 +424,7 @@
 </section>
 
 <!-- Who it is for -->
-<section class="section" id="audience">
+<section class="section section-soft" id="audience">
   <div class="container split-p">
     <div class="head-narrow">
       <p class="kicker">Who it is for</p>
@@ -445,7 +440,7 @@
 </section>
 
 <!-- FAQ -->
-<section class="section section-soft" id="faq">
+<section class="section" id="faq">
   <div class="container split-p">
     <div class="head-narrow"><h2>Questions people ask</h2></div>
     <div class="faq">
@@ -472,15 +467,21 @@
 
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer ml-footer">
   <div class="container footer-grid">
     <div>
-      <a href="index.html" class="logo"><img src="images/nvs-logo.png" alt="NVS Technologies" width="700" height="135"></a>
-      <p class="footer-blurb">Building practical digital products that simplify everyday tasks and help people work smarter.</p>
+      <a href="#top" class="logo ml-brand" aria-label="Money Ledgr, back to top"><img src="images/money-ledgr-icon.jpg" alt="" width="320" height="320"><span>Money Ledgr</span></a>
+      <p class="footer-blurb">Track. Manage. Grow. One app for budgets, loans, savings, investments and shared expenses.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.money_ledgr.app&pcampaignid=web_share" class="btn btn-primary btn-small footer-play" target="_blank" rel="noopener">Get it on Google Play</a>
     </div>
-    <div><h4>Products</h4><a href="money-ledgr.html">Money Ledgr</a></div>
-    <div><h4>Company</h4><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></div>
+    <div><h4>Money Ledgr</h4><a href="#everything">Tools</a><a href="#demo">Try it</a><a href="#features">Features</a><a href="#how">How it works</a></div>
+    <div><h4>Support</h4><a href="#faq">FAQ</a><a href="index.html#contact">Contact us</a></div>
     <div><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms and Conditions</a></div>
+  </div>
+  <div class="container footer-nvs">
+    <span>A product of</span>
+    <a href="index.html" class="nvs-credit" aria-label="NVS Technologies home"><img src="images/nvs-logo.png" alt="NVS Technologies" width="700" height="135"></a>
+    <a href="index.html#products" class="nvs-more">See all NVS Technologies products &rarr;</a>
   </div>
   <div class="container footer-bottom">
     <span>&copy; <span id="year">2026</span> NVS Technologies. All rights reserved.</span>

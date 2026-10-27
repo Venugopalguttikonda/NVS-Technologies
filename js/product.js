@@ -310,7 +310,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   document.documentElement.classList.add('js');
 
   const targets = document.querySelectorAll(
-    '.overview > div, .demo-phone, .demo-copy, .lab, .dive, .tool-grid li, .p-steps li, .audience > div, .tour, .p-cta-inner'
+    '.overview > div, .demo-phone, .demo-copy, .lab, .feat-tabs, .tool-grid li, .p-steps li, .audience > div, .tour, .p-cta-inner'
   );
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -322,5 +322,36 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     el.classList.add('reveal');
     el.style.transitionDelay = (i % 3) * 80 + 'ms';    // small stagger inside rows
     io.observe(el);
+  });
+}
+
+
+// ==========================================================
+// Features in detail: one panel, switch between the five screens
+// ==========================================================
+const featBox = document.getElementById('feat-tabs');
+
+if (featBox) {
+  const tabs = [...featBox.querySelectorAll('[role=tab]')];
+
+  function showFeature(tab, focus) {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+    tab.scrollIntoView({ block: 'nearest', inline: 'center' });
+  }
+
+  tabs.forEach((tab, i) => {
+    tab.addEventListener('click', () => showFeature(tab));
+    tab.addEventListener('keydown', (e) => {
+      const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (step) { e.preventDefault(); showFeature(tabs[(i + step + tabs.length) % tabs.length], true); }
+      if (e.key === 'Home') { e.preventDefault(); showFeature(tabs[0], true); }
+      if (e.key === 'End') { e.preventDefault(); showFeature(tabs[tabs.length - 1], true); }
+    });
   });
 }
