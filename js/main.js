@@ -49,25 +49,76 @@ sections.forEach(s => s && observer.observe(s));
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
 
-form.addEventListener('submit', (e) => {
+// Paste your Google Form "pre-filled link" here (setup steps are in the chat).
+// The form saves every message into a Google Sheet. Questions must be in this order: Name, Email, Message.
+const GOOGLE_FORM_LINK = 'PASTE_YOUR_PREFILLED_LINK_HERE';
+
+// Work out the submit address and the three entry IDs from that one link
+function readFormLink(link) {
+  try {
+    const u = new URL(link);
+    const entries = [...u.searchParams.keys()].filter(k => k.startsWith('entry.'));
+    if (entries.length < 3) return null;
+    return {
+      url: u.origin + u.pathname.replace(/\/viewform$/, '/formResponse'),
+      name: entries[0], email: entries[1], message: entries[2]
+    };
+  } catch (err) { return null; }
+}
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   let ok = true;
 
-  form.querySelectorAll('input, textarea').forEach(field => {
+  form.querySelectorAll('input:not([name="website"]), textarea').forEach(field => {
     const bad = !field.value.trim() || (field.type === 'email' && !/^\S+@\S+\.\S+$/.test(field.value));
     field.classList.toggle('invalid', bad);
     if (bad) ok = false;
   });
 
-  status.className = 'form-status ' + (ok ? 'ok' : 'error');
   if (!ok) {
+    status.className = 'form-status error';
     status.textContent = 'Please fill in every field with a valid email address.';
     return;
   }
 
-  // TODO: connect to your backend or a service like Formspree here
-  status.textContent = 'Thanks! Your message is ready to send. Connect the form to your backend to go live.';
-  form.reset();
+  // hidden spam-trap field: bots fill it in, people never see it
+  if (form.website.value) {
+    status.className = 'form-status ok';
+    status.textContent = 'Thanks! Your message has been sent.';
+    form.reset();
+    return;
+  }
+
+  const target = readFormLink(GOOGLE_FORM_LINK);
+  if (!target) {
+    status.className = 'form-status error';
+    status.textContent = 'The form is not connected yet. Please email us instead.';
+    return;
+  }
+
+  const button = form.querySelector('button[type="submit"]');
+  button.disabled = true;
+  status.className = 'form-status';
+  status.textContent = 'Sending...';
+
+  const data = new URLSearchParams();
+  data.append(target.name, form.name.value.trim());
+  data.append(target.email, form.email.value.trim());
+  data.append(target.message, form.message.value.trim());
+
+  try {
+    // no-cors: Google does not let a website read the reply, so we only know the request went out
+    await fetch(target.url, { method: 'POST', mode: 'no-cors', body: data });
+    status.className = 'form-status ok';
+    status.textContent = 'Thanks! Your message has been sent. We will get back to you soon.';
+    form.reset();
+  } catch (err) {
+    status.className = 'form-status error';
+    status.textContent = 'Sorry, something went wrong. Please email support.nvstechnologies@gmail.com.';
+  } finally {
+    button.disabled = false;
+  }
 });
 
 document.getElementById('year').textContent = new Date().getFullYear();

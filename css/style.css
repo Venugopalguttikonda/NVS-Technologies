@@ -373,25 +373,19 @@ html.modal-open { overflow: hidden; }
 
 /* ---------- Privacy policy popup ---------- */
 .policy-dialog {
-  width: min(820px, 94vw); max-height: 88vh; padding: 0; border: 0; border-radius: 14px;
+  width: min(1040px, 96vw); height: 92vh; max-height: 92vh; padding: 0; border: 0; border-radius: 16px;
   background: var(--white); color: var(--text); overflow: hidden;
   box-shadow: 0 24px 60px rgba(8, 13, 40, 0.45);
 }
 .policy-dialog[open] { display: flex; flex-direction: column; }
 .policy-dialog::backdrop { background: rgba(8, 13, 40, 0.75); backdrop-filter: blur(4px); }
-.pd-head {
-  display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;
-  padding: 22px 28px 18px; background: var(--navy); color: var(--white);
-}
-.pd-head h2 { font-size: 1.35rem; margin-bottom: 4px; }
-.pd-head p { margin: 0; font-size: 0.875rem; color: #b8c0e0; }
+.pd-head { flex: none; padding: 24px 36px 20px; background: var(--navy); color: var(--white); }
+.pd-head h2 { font-size: 1.6rem; margin: 0 0 4px; }
+.pd-head p { margin: 0; font-size: 0.9rem; color: #b8c0e0; }
 .pd-head p strong { color: var(--white); }
-.pd-close {
-  flex: none; width: 38px; height: 38px; border: 0; border-radius: 50%;
-  background: rgba(255,255,255,0.12); color: var(--white); font-size: 1.5rem; line-height: 1; cursor: pointer;
-}
-.pd-close:hover { background: rgba(255,255,255,0.25); }
-.pd-body { padding: 8px 28px 28px; overflow-y: auto; overscroll-behavior: contain; }
+.pd-body { flex: 1; min-height: 0; padding: 8px 36px 28px; overflow-y: auto; overscroll-behavior: contain; font-size: 1.02rem; }
+.pd-foot { flex: none; display: flex; justify-content: center; padding: 14px 24px; border-top: 1px solid var(--line); background: var(--white); }
+.pd-close-btn { min-width: 160px; }
 .policy h2 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin: 26px 0 8px; }
 .policy p, .policy li { color: #3a4057; }
 .policy ul { list-style: disc; padding-left: 1.3rem; margin: 0 0 1rem; }
@@ -403,6 +397,12 @@ html.modal-open { overflow: hidden; }
 }
 .policy-copy { margin: 30px 0 0; padding-top: 18px; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--muted) !important; }
 @media (max-width: 640px) {
-  .pd-head { padding: 18px 18px 14px; }
-  .pd-body { padding: 4px 18px 22px; }
+  .policy-dialog { width: 100vw; height: 100dvh; max-height: 100dvh; border-radius: 0; }
+  .pd-head { padding: 18px 20px 14px; }
+  .pd-head h2 { font-size: 1.3rem; }
+  .pd-body { padding: 4px 20px 22px; }
+  .pd-close-btn { width: 100%; }
 }
+
+.contact-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.contact-form button:disabled { opacity: 0.7; cursor: wait; }

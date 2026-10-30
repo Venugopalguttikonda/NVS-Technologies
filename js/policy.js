@@ -8,11 +8,11 @@
   dlg.setAttribute('aria-labelledby', 'policy-title');
   dlg.innerHTML =
     '<div class="pd-head">' +
-      '<div><h2 id="policy-title">MoneyLedgr Privacy Policy</h2>' +
-      '<p><strong>Effective date:</strong> August 14, 2026</p></div>' +
-      '<button type="button" class="pd-close" aria-label="Close privacy policy">&times;</button>' +
+      '<h2 id="policy-title">MoneyLedgr Privacy Policy</h2>' +
+      '<p><strong>Effective date:</strong> August 14, 2026</p>' +
     '</div>' +
-    '<div class="pd-body policy">' + BODY + '</div>';
+    '<div class="pd-body policy">' + BODY + '</div>' +
+    '<div class="pd-foot"><button type="button" class="btn btn-primary pd-close-btn">Close</button></div>';
   document.body.appendChild(dlg);
 
   const body = dlg.querySelector('.pd-body');
@@ -28,7 +28,7 @@
     document.documentElement.classList.remove('modal-open');
     if (location.hash === '#privacy') history.replaceState(null, '', location.pathname + location.search);
   });
-  dlg.querySelector('.pd-close').addEventListener('click', () => dlg.close());
+  dlg.querySelector('.pd-close-btn').addEventListener('click', () => dlg.close());
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });  // click outside
 
   document.addEventListener('click', (e) => {

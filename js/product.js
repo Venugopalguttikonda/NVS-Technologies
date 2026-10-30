@@ -355,3 +355,22 @@ if (featBox) {
     });
   });
 }
+
+
+// ---------- App preview slider ----------
+(function () {
+  const track = document.getElementById('pv-track');
+  if (!track) return;
+  const prev = document.getElementById('pv-prev');
+  const next = document.getElementById('pv-next');
+  const step = () => { const i = track.querySelector('.pv-item'); return i.offsetWidth + 22; };
+  const update = () => {
+    prev.disabled = track.scrollLeft < 4;
+    next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+  };
+  prev.addEventListener('click', () => track.scrollBy({ left: -step() * 2 }));
+  next.addEventListener('click', () => track.scrollBy({ left: step() * 2 }));
+  track.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
