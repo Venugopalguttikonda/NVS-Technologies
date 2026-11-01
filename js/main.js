@@ -49,22 +49,9 @@ sections.forEach(s => s && observer.observe(s));
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
 
-// Paste your Google Form "pre-filled link" here (setup steps are in the chat).
-// The form saves every message into a Google Sheet. Questions must be in this order: Name, Email, Message.
-const GOOGLE_FORM_LINK = 'PASTE_YOUR_PREFILLED_LINK_HERE';
-
-// Work out the submit address and the three entry IDs from that one link
-function readFormLink(link) {
-  try {
-    const u = new URL(link);
-    const entries = [...u.searchParams.keys()].filter(k => k.startsWith('entry.'));
-    if (entries.length < 3) return null;
-    return {
-      url: u.origin + u.pathname.replace(/\/viewform$/, '/formResponse'),
-      name: entries[0], email: entries[1], message: entries[2]
-    };
-  } catch (err) { return null; }
-}
+// Paste your Google Sheet "Web app URL" here (setup steps are in the chat).
+// Every contact message is saved as a new row in your Google Sheet.
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxrXuwvnpevxGRmFz2HLDZuK-PBrL7AgfBC72ZKr5sGcUWXFq9qNKyGvBcynxEL-MM4ag/exec';
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -90,8 +77,7 @@ form.addEventListener('submit', async (e) => {
     return;
   }
 
-  const target = readFormLink(GOOGLE_FORM_LINK);
-  if (!target) {
+  if (SHEET_URL.startsWith('PASTE_')) {
     status.className = 'form-status error';
     status.textContent = 'The form is not connected yet. Please email us instead.';
     return;
@@ -103,13 +89,14 @@ form.addEventListener('submit', async (e) => {
   status.textContent = 'Sending...';
 
   const data = new URLSearchParams();
-  data.append(target.name, form.name.value.trim());
-  data.append(target.email, form.email.value.trim());
-  data.append(target.message, form.message.value.trim());
+  data.append('name', form.name.value.trim());
+  data.append('email', form.email.value.trim());
+  data.append('message', form.message.value.trim());
 
   try {
-    // no-cors: Google does not let a website read the reply, so we only know the request went out
-    await fetch(target.url, { method: 'POST', mode: 'no-cors', body: data });
+    const res = await fetch(SHEET_URL, { method: 'POST', body: data });
+    const out = await res.json();
+    if (out.result !== 'success') throw new Error(out.error || 'Request failed');
     status.className = 'form-status ok';
     status.textContent = 'Thanks! Your message has been sent. We will get back to you soon.';
     form.reset();
