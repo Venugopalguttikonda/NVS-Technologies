@@ -36,6 +36,10 @@
 
 /* ---------- Generic section helpers ---------- */
 .section-soft { background: var(--soft); }
+/* tighter, even rhythm between sections (was 96px top + 96px bottom = ~190px gaps) */
+.product-page .section { padding: 52px 0; }
+.product-page .section:not(.section-soft) + .section:not(.section-soft) { padding-top: 0; }
+@media (max-width: 860px) { .product-page .section { padding: 40px 0; } }
 .head-narrow { max-width: 38em; margin-bottom: 44px; }
 .head-narrow h2 { margin-bottom: 0 !important; }
 .product-page .section h2 { font-weight: 700; }
@@ -61,7 +65,7 @@
 .tool-grid span { color: var(--muted); font-size: 0.92rem; }
 
 /* ---------- Steps ---------- */
-.p-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.p-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 .p-steps span { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 16px; border-radius: 50%; color: var(--white); font: 700 1.05rem var(--head); background: linear-gradient(135deg, var(--ml-green), var(--ml-blue)); }
 .p-steps h3 { font-size: 1.2rem; margin-bottom: 8px; }
 .p-steps p { color: var(--muted); font-size: 0.97rem; }
@@ -84,11 +88,12 @@
 
 /* ---------- Closing CTA ---------- */
 .p-cta { background: var(--navy); color: var(--white); padding: 70px 0; }
-.p-cta-inner { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.p-cta-inner { display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap; }
 .p-cta-inner img { width: 72px; height: 72px; border-radius: 18px; }
-.p-cta-inner > div { flex: 1; min-width: 240px; }
+.p-cta-inner > div { flex: 0 1 auto; min-width: 240px; }
 .p-cta h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 6px; }
 .p-cta p { margin: 0; color: #aab4d4; }
+
 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
@@ -292,7 +297,7 @@
 .ml-brand span { font: 700 1.2rem var(--head); letter-spacing: -0.01em; color: var(--white); }
 .site-footer .ml-brand img { height: 44px; width: 44px; }
 
-.p-hero-inner { }
+.p-hero-inner .hero-actions { margin-bottom: 30px; }
 .p-hero .hero-tag { display: inline-block; margin-bottom: 20px; padding: 5px 14px; border: 1px solid rgba(159,233,200,0.35); border-radius: 999px; font: 600 0.88rem var(--head); color: #9fe9c8; }
 .p-hero h1 { max-width: 13em; }
 
@@ -329,9 +334,6 @@
   .nvs-more { margin-left: 0; width: 100%; }
 }
 
-/* the generic footer-link rule must not restyle the Play button */
-.footer-grid a.footer-play { display: inline-block; margin: 18px 0 0; color: var(--white); }
-.footer-grid a.footer-play:hover { color: var(--white); }
 
 
 /* ---------- Tool cards (coloured icon tiles) ---------- */

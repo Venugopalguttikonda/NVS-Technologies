@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NVS Technologies | Building Digital Products for Everyday Life</title>
   <meta name="description" content="NVS Technologies creates practical digital products that simplify everyday tasks. Home of Money Ledgr, a personal finance app.">
+  <meta name="theme-color" content="#0d1540">
+  <meta property="og:title" content="NVS Technologies">
+  <meta property="og:description" content="Practical digital products for everyday life. Home of Money Ledgr.">
+  <meta property="og:image" content="images/money-ledgr-icon.jpg">
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,13 +41,19 @@
 
 <!-- ============ Hero ============ -->
 <section class="hero">
-  <div class="container">
-    <p class="pill"><span class="dot"></span> NVS Technologies</p>
-    <h1>Building digital products for everyday life.</h1>
-    <p class="hero-text">We make practical apps that simplify daily tasks, keep you organised, and help you get more done with less effort.</p>
-    <div class="hero-actions">
-      <a href="#products" class="btn btn-primary">Explore our products</a>
-      <a href="#about" class="btn btn-outline">About NVS</a>
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="pill"><span class="dot"></span> NVS Technologies</p>
+      <h1>Building digital products for everyday life.</h1>
+      <p class="hero-text">We make practical apps that simplify daily tasks, keep you organised, and help you get more done with less effort.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary">Explore our products</a>
+        <a href="#about" class="btn btn-outline">About NVS</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <img class="hv-back" src="images/screens/investments.jpg" alt="" width="720" height="1280">
+      <img class="hv-front" src="images/screens/budgets.jpg" alt="" width="720" height="1280">
     </div>
   </div>
 </section>
@@ -180,6 +190,7 @@
     <div>
       <a href="#top" class="logo"><img src="images/nvs-logo.png" alt="NVS Technologies" width="700" height="135"></a>
       <p class="footer-blurb">Building practical digital products that simplify everyday tasks and help people work smarter.</p>
+      <p class="footer-mail"><a href="mailto:support.nvstechnologies@gmail.com">support.nvstechnologies@gmail.com</a></p>
     </div>
     <div>
       <h4>Products</h4>
@@ -192,8 +203,8 @@
     </div>
     <div>
       <h4>Legal</h4>
-      <a href="#privacy" data-open-policy>Privacy policy</a>
-      <a href="#">Terms and conditions</a>
+      <a href="moneyledgr-privacy.html">Privacy policy</a>
+      <a href="moneyledgr-terms.html">Terms and conditions</a>
     </div>
   </div>
   <div class="container footer-bottom">
@@ -253,6 +264,5 @@
 <button class="to-top" id="to-top" aria-label="Back to top" hidden>&uarr;</button>
 
 <script src="js/main.js"></script>
-<script src="js/policy.js"></script>
 </body>
 </html>
